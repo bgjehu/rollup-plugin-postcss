@@ -203,7 +203,7 @@ export default {
         `export var stylesheet=${JSON.stringify(result.css)};`
     }
 
-    if (!shouldExtract && !outputFormat !== 'css' && shouldInject) {
+    if (!shouldExtract && outputFormat !== 'css' && shouldInject) {
       if (typeof options.inject === 'function') {
         output += options.inject(cssVariableName, this.id)
       } else {
