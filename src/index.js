@@ -45,7 +45,9 @@ export default (options = {}) => {
       syntax: options.syntax,
       stringifier: options.stringifier,
       exec: options.exec
-    }
+    },
+    /** Output format: JS or CSS */
+    format: options.format === 'css' ? 'css' : 'js'
   }
   let use = ['sass', 'stylus', 'less']
   if (Array.isArray(options.use)) {

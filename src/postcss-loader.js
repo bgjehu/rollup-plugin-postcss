@@ -68,7 +68,7 @@ export default {
     ]
     const shouldExtract = options.extract
     const shouldInject = options.inject
-    const adjustForSapper = options.sapper
+    const outputFormat = options.format
 
     const modulesExported = {}
     const autoModules = options.autoModules !== false && options.onlyModules !== true
@@ -191,7 +191,7 @@ export default {
         code: result.css,
         map: outputMap
       }
-    } else if (adjustForSapper) {
+    } else if (outputFormat === 'css') {
       output += result.css.slice(1, result.css.length - 1)
     } else { 
       const module = supportModules ?
@@ -203,7 +203,7 @@ export default {
         `export var stylesheet=${JSON.stringify(result.css)};`
     }
 
-    if (!shouldExtract && !adjustForSapper && shouldInject) {
+    if (!shouldExtract && !outputFormat !== 'css' && shouldInject) {
       if (typeof options.inject === 'function') {
         output += options.inject(cssVariableName, this.id)
       } else {
