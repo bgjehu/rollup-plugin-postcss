@@ -185,14 +185,14 @@ export default {
 
     const cssVariableName = identifier('css', true)
     if (shouldExtract) {
-      output += `export default ${JSON.stringify(modulesExported[this.id])};`
+      if (outputFormat !== 'css') output += `export default ${JSON.stringify(modulesExported[this.id])};`
       extracted = {
         id: this.id,
         code: result.css,
         map: outputMap
       }
     } else if (outputFormat === 'css') {
-      output += result.css.slice(1, result.css.length - 1)
+      output += result.css
     } else { 
       const module = supportModules ?
         JSON.stringify(modulesExported[this.id]) :
